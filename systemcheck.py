@@ -1,12 +1,10 @@
-from flask import Flask, request
-
-app = Flask(__name__)
-
-@app.route("/")
-def info():
-    return {
-        "visitor_ip": request.remote_addr,
-        "browser": request.headers.get("User-Agent")
-    }
-
-app.run()
+import platform
+import socket
+print("System:", platform.system())
+print("Node name:", platform.node())
+print("Release:", platform.release())
+print("Version:", platform.version())
+print("Machine:", platform.machine())
+print("Processor:", platform.processor())
+print("Hostname:", socket.gethostname())
+print("IP Address:", socket.gethostbyname(socket.gethostname()))
