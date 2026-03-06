@@ -1,21 +1,12 @@
-from flask import Flask
-import platform
-import socket
+from flask import Flask, request
+
 app = Flask(__name__)
 
 @app.route("/")
-def system_info():
+def info():
     return {
-        "system": platform.system(),
-        "version": platform.version(),
-        "processor": platform.processor(),
-        "Node name": platform.node(),
-        "Hostname": socket.gethostname(),
-        "Domain name": socket.getfqdn(),
-        "Release": platform.release(),
-        "Machine": platform.machine(),
-        "IP Address": socket.gethostbyname(socket.gethostname())
+        "visitor_ip": request.remote_addr,
+        "browser": request.headers.get("User-Agent")
     }
 
 app.run()
-
