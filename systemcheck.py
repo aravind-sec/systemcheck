@@ -1,10 +1,21 @@
+from flask import Flask
 import platform
 import socket
-print("System:", platform.system())
-print("Node name:", platform.node())
-print("Release:", platform.release())
-print("Version:", platform.version())
-print("Machine:", platform.machine())
-print("Processor:", platform.processor())
-print("Hostname:", socket.gethostname())
-print("IP Address:", socket.gethostbyname(socket.gethostname()))
+app = Flask(__name__)
+
+@app.route("/")
+def system_info():
+    return {
+        "system": platform.system(),
+        "version": platform.version(),
+        "processor": platform.processor(),
+        "Node name": platform.node(),
+        "Hostname": socket.gethostname(),
+        "Domain name": socket.getfqdn(),
+        "Release": platform.release(),
+        "Machine": platform.machine(),
+        "IP Address": socket.gethostbyname(socket.gethostname())
+    }
+
+app.run()
+
